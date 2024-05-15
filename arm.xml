@@ -1,0 +1,34 @@
+<mujoco model="simple_robot_arm">
+  <compiler angle="degree" coordinate="local"/>
+  
+  <default>
+    <joint armature="0.1" damping="0.1" limited="true"/>
+    <geom contype="1" conaffinity="0" density="5000" friction="1 0.1 0.1" rgba="0.7 0.7 0.7 1"/>
+    <motor ctrlrange="-2 2" ctrllimited="true"/>
+  </default>
+  
+  <asset>
+    <!-- Define materials, meshes, etc. -->
+  </asset>
+  
+  <worldbody>
+    <body name="base" pos="0 0 0.1">
+      <joint name="joint1" type="hinge" axis="0 0 1" range="-180 180"/>
+      <geom type="cylinder" size="0.1 0.1" pos="0 0 0.05"/>
+      <body name="link1" pos="0 0 0.1">
+        <joint name="joint2" type="hinge" axis="0 1 0" range="-180 180"/>
+        <geom type="cylinder" size="0.08 0.08" pos="0 0 0.1"/>
+        <body name="link2" pos="0 0 0.2">
+          <joint name="joint3" type="hinge" axis="0 1 0" range="-180 180"/>
+          <geom type="cylinder" size="0.06 0.06" pos="0 0 0.1"/>
+        </body>
+      </body>
+    </body>
+  </worldbody>
+
+  <actuator>
+    <position joint="joint1"/>
+    <position joint="joint2"/>
+    <position joint="joint3"/>
+  </actuator>
+</mujoco>
